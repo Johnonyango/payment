@@ -10,8 +10,8 @@ from .models import MpesaPayment
 
 
 def accessToken(request):
-    consumer_key = 'cHnkwYIgBbrxlgBoneczmIJFXVm0oHky'
-    consumer_secret = '2nHEyWSD4VjpNh2g'
+    consumer_key = 'HR74CNgipCQDsBPe5JC9pyDFve6GyJXf'
+    consumer_secret = 'vKfTRZM7RjdJKgjp'
     api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
 
     r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
@@ -45,10 +45,11 @@ def register_urls(request):
     access_token = MpesaAccessToken.validated_mpesa_access_token
     api_url = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl"
     headers = {"Authorization": "Bearer %s" % access_token}
-    options = {"ShortCode": LipanaMpesaPpassword.Business_short_code,
+    options = {"ShortCode": LipanaMpesaPpassword.Test_c2b_shortcode,
                "ResponseType": "Completed",
-               "ConfirmationURL": "http://127.0.0.1:8000/api/v1/c2b/confirmation",
-               "ValidationURL": "http://127.0.0.1:8000/api/v1/c2b/validation"}
+               "ConfirmationURL": "https://ca715246.ngrok.io/api/v1/c2b/confirmation",
+               "ValidationURL": "https://ca715246.ngrok.io/api/v1/c2b/validation"}
+
     response = requests.post(api_url, json=options, headers=headers)
     return HttpResponse(response.text)
 
