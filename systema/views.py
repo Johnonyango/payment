@@ -6,7 +6,17 @@ import json
 from . mpesa_credentials import MpesaAccessToken, LipanaMpesaPpassword
 from django.views.decorators.csrf import csrf_exempt
 from .models import MpesaPayment
+from rest_framework import viewsets
+from .serializers import MpesaPaymentSerializer
 
+
+
+class MpesaPaymentViewSet(viewsets.ModelViewSet):
+    """
+    Returns the mpesa transaction details
+    """
+    queryset = MpesaPayment.objects.all()
+    serializer_class = MpesaPaymentSerializer
 
 
 def accessToken(request):
@@ -86,3 +96,5 @@ def confirmation(request):
         "ResultDesc": "Accepted"
     }
     return JsonResponse(dict(context))
+
+

@@ -1,5 +1,11 @@
 from django.urls import path
 from . import views
+from rest_framework import routers
+from .models import MpesaPayment
+
+router = routers.DefaultRouter()
+router.register(r'MpesaPayment', views.MpesaPaymentViewSet)
+
 
 
 urlpatterns = [
