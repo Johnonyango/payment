@@ -48,7 +48,7 @@ def lipa_na_mpesa_online(request):
         "TransactionDesc": "Testing stk push"
     }
     response = requests.post(api_url, json=request, headers=headers)
-    return HttpResponse('success')
+    return HttpResponse('Lipa na Mpesa working. Please confirm payment through pin')
 
 @csrf_exempt
 def register_urls(request):

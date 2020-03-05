@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from rest_framework import routers
 from .models import MpesaPayment
@@ -16,4 +16,9 @@ urlpatterns = [
     path('c2b/confirmation', views.confirmation, name="confirmation"),
     path('c2b/validation', views.validation, name="validation"),
     path('c2b/callback', views.call_back, name="call_back"),
+
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('', include(router.urls))
+
+
 ]
